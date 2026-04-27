@@ -9,7 +9,7 @@ export default function UnitSD() {
     { t: "Intensif Tahfidz Al-Qur'an", d: "Mencintai, menghafal, dan mengamalkan Al-Qur'an sejak dini.", i: "📖", img: "/tahfiz.jpeg" },
     { t: "Leadership (LDKS)", d: "Membentuk pemimpin berakhlak, disiplin, dan bertanggung jawab.", i: "👑", img: "/ldks.jpeg" },
     { t: "Dokter Kecil", d: "Menanamkan kepedulian kesehatan dan pola hidup bersih sehat.", i: "🩺", img: "/dokter_kecil.jpeg" },
-    { t: "Super Camp", d: "Melatih kemandirian, keberanian, dan kerja sama tim.", i: "🏕️", img: "/supercam.jpg" },
+    { t: "Super Camp", d: "Melatih kemandirian, keberanian, dan kerja sama tim.", i: "🏕️", img: "/supercam.JPG" },
   ];
 
   // 2. DATA EKSTRAKURIKULER (LENGKAP 8 SESUAI LIST)
@@ -33,7 +33,7 @@ export default function UnitSD() {
     "/sholat.jpg",
     "/tahfiz.jpeg",
     "/ldks.jpeg",
-    "/supercam.jpg"
+    "/supercam.JPG"
   ];
 
   const labelKegiatan = ["Market Day", "Wisuda Tahfidz", "Expo Karya", "Field Trip", "Ibadah Harian"];
