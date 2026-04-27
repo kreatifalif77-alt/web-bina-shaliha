@@ -6,7 +6,7 @@ export default function Profil() {
     { icon: '📖', title: 'Kurikulum Terpadu', desc: 'Sinergi kurikulum nasional dan nilai-nilai Islam dalam setiap pelajaran.' },
     { icon: '🕋', title: 'Tahfidz Qur\'an', desc: 'Target hafalan terukur dengan metode yang ceria & menyenangkan anak.' },
     { icon: '🤝', title: 'Karakter Mulia', desc: 'Pembiasaan adab dan akhlak sesuai sunnah Rasulullah SAW.' },
-    { icon: '👨‍👩‍👦', title: 'Sinergi Orang Tua', desc: 'Program harmonisasi sekolah & rumah (Parenting & Ayah Bercerita).' },
+    { icon: '👨‍👩‍👧‍👦', title: 'Sinergi Orang Tua', desc: 'Program harmonisasi sekolah & rumah (Parenting & Ayah Bercerita).' },
   ];
 
   return (
@@ -143,7 +143,15 @@ export default function Profil() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 items-stretch">
             {keunggulan.map((item, index) => (
               <div key={index} className="group p-10 rounded-[3rem] bg-gray-50 border-2 border-transparent hover:border-yellow-400 hover:bg-white hover:shadow-xl transition-all duration-500 flex flex-col text-center md:text-left h-full">
-                <div className="text-6xl mb-8 transform group-hover:scale-110 transition-all duration-500">{item.icon}</div>
+                {/* BAGIAN REVISI EMOJI KELUARGA MUSLIM */}
+                <div className="text-6xl mb-8 transform group-hover:scale-110 transition-all duration-500">
+                  {item.title === 'Sinergi Orang Tua' ? (
+                    <span className="flex items-center justify-center md:justify-start">
+                      👨‍💼<span className="relative ml-[-15px] z-10">🧕</span><span className="ml-[-10px]">👦</span>
+                    </span>
+                  ) : item.icon}
+                </div>
+                
                 <h4 className="text-xl font-black text-green-950 mb-4 uppercase tracking-tight leading-tight">{item.title}</h4>
                 <p className="text-gray-500 leading-relaxed font-medium text-sm mt-auto">{item.desc}</p>
               </div>

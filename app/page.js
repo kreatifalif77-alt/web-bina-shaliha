@@ -40,7 +40,7 @@ export default function Home() {
   const stats = [
     { angka: "100%", label: "Kurikulum Nasional & Muatan Lokal Berbasis Islam" },
     { angka: "Kompeten", label: "Tenaga Pendidik" },
-    { angka: "Modern", label: "Fasilitas Belajar" },
+    { angka: "Modern", label: "Pembelajaran" },
     { angka: "Unggul", label: "Output Lulusan" },
   ];
 

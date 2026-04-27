@@ -11,15 +11,9 @@ export default function Footer() {
     },
     { 
       name: 'YouTube', 
-      url: 'https://youtube.com/@ChannelBinaShaliha', 
+      url: 'https://youtube.com/@Channel Bina Shaliha', 
       handle: 'Channel Bina Shaliha', 
       iconPath: '/youtube.png' // Pastikan file ini ada di folder /public
-    },
-    { 
-      name: 'Facebook', 
-      url: 'https://facebook.com/BinaShaliha', 
-      handle: 'Bina Shaliha', 
-      iconPath: '/facebook.png' // Pastikan file ini ada di folder /public
     },
   ];
 
@@ -62,8 +56,7 @@ export default function Footer() {
           <h4 className="font-bold mb-6 text-yellow-400 uppercase tracking-wider border-b border-yellow-500/30 pb-2 w-fit">Kontak</h4>
           <div className="text-gray-300 space-y-2 text-sm">
             <p><span className="font-bold text-white">Telp:</span> 021 - 7752794</p>
-            <p><span className="font-bold text-white">WA:</span> 0812 9732 3697</p>
-            <p><span className="font-bold text-white">Web:</span> www.binashaliha.com</p>
+            <p><span className="font-bold text-white">WA:</span> 0858-8302-0890</p>
           </div>
         </div>
 

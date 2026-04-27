@@ -17,7 +17,7 @@ export default function UnitTK() {
     { n: "Life Skill & 7 Kebiasaan", d: "Gerakan Anak Indonesia Hebat.", i: "💪" },
     { n: "Project Based Learning", d: "Belajar bermakna melalui proyek seru.", i: "🚀" },
     { n: "Literasi & Outing Class", d: "Mengenal dunia di luar ruang kelas.", i: "🌍" },
-    { n: "Harmonisasi Orang Tua", d: "Program Parenting & Ayah Bercerita.", i: "👨‍👩‍👧‍👦" },
+    { n: "Harmonisasi Orang Tua", d: "Program Parenting & Ayah Bercerita.", i: "👨‍👩‍👧‍👦" }, // Menggunakan kombinasi keluarga muslim
   ];
 
   const kegiatanSeru = [
@@ -37,9 +37,9 @@ export default function UnitTK() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-amber-400 via-yellow-300 to-orange-50 px-6">
         
         {/* BACKGROUND DECORATION */}
-        <div className="absolute inset-0 z-0 opacity-20">
+        <div className="absolute inset-0 z-0 opacity-60">
           <Image 
-            src="/bg.png" 
+            src="/baground_tk.jpeg" 
             alt="Background Decoration" 
             fill 
             className="object-cover scale-110" 
@@ -91,7 +91,7 @@ export default function UnitTK() {
               <div className="absolute -inset-4 bg-amber-400/20 rounded-[4rem] -rotate-3 transition-transform group-hover:rotate-0 duration-700" />
               <div className="relative aspect-square rounded-[3.5rem] overflow-hidden shadow-2xl border-[15px] border-white">
                 <Image 
-                  src="/melukis.jpeg" 
+                  src="/melukis_tk.jpeg" 
                   alt="Kegiatan Melukis" 
                   fill 
                   className="object-cover hover:scale-110 transition-transform duration-1000" 
@@ -160,8 +160,19 @@ export default function UnitTK() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {programUnggulan.map((prog, i) => (
               <div key={i} className="group bg-white/5 backdrop-blur-md border border-white/10 p-10 rounded-[3rem] hover:bg-white hover:shadow-[0_30px_60px_-15px_rgba(251,191,36,0.3)] transition-all duration-700 text-left relative overflow-hidden">
-                <div className="absolute -right-4 -top-4 text-8xl opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none">{prog.i}</div>
-                <div className="text-5xl mb-8 transform group-hover:scale-110 group-hover:rotate-12 transition-transform inline-block bg-white/10 p-4 rounded-2xl group-hover:bg-amber-100 transition-colors">{prog.i}</div>
+                <div className="absolute -right-4 -top-4 text-8xl opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none">
+                  {prog.n === "Harmonisasi Orang Tua" ? "🧕" : prog.i}
+                </div>
+                
+                {/* Visual Logic for Muslim Family Representation */}
+                <div className="text-5xl mb-8 transform group-hover:scale-110 group-hover:rotate-12 transition-transform inline-block bg-white/10 p-4 rounded-2xl group-hover:bg-amber-100 transition-colors">
+                  {prog.n === "Harmonisasi Orang Tua" ? (
+                    <span className="flex items-center">
+                      👨‍💼<span className="relative ml-[-12px] z-10">🧕</span><span className="ml-[-8px]">👦</span>
+                    </span>
+                  ) : prog.i}
+                </div>
+
                 <h4 className="text-2xl font-black text-amber-400 group-hover:text-emerald-950 mb-4 tracking-tight leading-tight transition-colors">{prog.n}</h4>
                 <p className="text-emerald-50/60 group-hover:text-gray-500 text-sm font-medium leading-relaxed transition-colors">{prog.d}</p>
                 <div className="mt-6 h-1 w-0 bg-amber-500 group-hover:w-full transition-all duration-700 rounded-full" />
