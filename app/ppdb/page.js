@@ -88,7 +88,7 @@ export default function PPDB() {
                 <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-400/10 rounded-full -mr-16 -mt-16 transition-all group-hover:scale-150" />
                 <h3 className="text-2xl font-black text-blue-950 uppercase mb-4 tracking-tight">SD Islam <br/> Bina Shaliha</h3>
                 <p className="text-gray-400 text-sm leading-relaxed mb-8 italic">Mencetak generasi Rabbani yang kompetitif dalam akademik dan adab sesuai Sunnah.</p>
-                <div className="inline-flex px-4 py-2 bg-blue-900 text-white rounded-xl font-black text-[10px] uppercase tracking-widest">Akreditasi A</div>
+                <div className="inline-flex px-4 py-2 bg-blue-900 text-white rounded-xl font-black text-[10px] uppercase tracking-widest">Akreditasi B</div>
               </div>
             </div>
 

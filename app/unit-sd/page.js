@@ -14,11 +14,11 @@ export default function UnitSD() {
 
   // 2. DATA EKSTRAKURIKULER (LENGKAP 8 SESUAI LIST)
   const ekstrakurikuler = [
-    { n: "PRAMUKA", i: "⚜️", img: "/pramuka.jpeg" },
+    { n: "PRAMUKA", i: "⚜️", img: "/pramukaa.jpeg" },
     { n: "MARAWIS", i: "🥁", img: "/marawis.jpeg" },
     { n: "PASKIBRA", i: "🇮🇩", img: "/paskibra.jpeg" },
-    { n: "PENCAK SILAT", i: "🥋", img: "/silat.jpeg" },
-    { n: "ENGLISH CLUB", i: "🇬🇧", img: "/inggris_club.jpeg" },
+    { n: "PENCAK SILAT", i: "🥋", img: "/pencaksilat.jpeg" },
+    { n: "ENGLISH CLUB", i: "🇬🇧", img: "/inggris.jpeg" },
     { n: "MELUKIS", i: "🎨", img: "/menggambar.jpeg" },
     { n: "TAHFIDZ UNGGULAN", i: "🕌", img: "/tahfiz.jpeg" },
     { n: "RENANG", i: "🏊‍♂️", img: "/berenang.jpeg" },
