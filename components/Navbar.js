@@ -1,13 +1,35 @@
 "use client";
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Sembunyikan navbar saat scroll ke bawah, tampilkan saat scroll ke atas
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        setIsVisible(false);
+        setIsOpen(false); // tutup menu mobile jika sedang terbuka
+      } else {
+        setIsVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   return (
-    <nav className="fixed w-full z-50 bg-white text-green-950 shadow-md border-b-2 border-green-900">
+    <nav className={`fixed w-full z-50 bg-white text-green-950 shadow-md border-b-2 border-green-900 transition-transform duration-300 ease-in-out ${isVisible ? 'translate-y-0' : '-translate-y-full lg:translate-y-0'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           

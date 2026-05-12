@@ -1,8 +1,24 @@
 "use client";
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function AdminDashboard() {
+  const [stats, setStats] = useState({ guru: 0, berita: 0, galeri: 0, faq: 0, testimoni: 0 });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/admin/stats')
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          setStats(data.data);
+        }
+      })
+      .catch(err => console.error(err))
+      .finally(() => setLoading(false));
+  }, []);
+
   const mainMenus = [
     { 
       title: "Profil Guru & Staff", 
@@ -17,6 +33,20 @@ export default function AdminDashboard() {
       icon: "📸", 
       link: "/admin/dashboard/galeri",
       color: "bg-blue-600"
+    },
+    { 
+      title: "Kelola FAQ", 
+      desc: "Atur pertanyaan dan jawaban yang sering diajukan di Beranda", 
+      icon: "❓", 
+      link: "/admin/dashboard/faq",
+      color: "bg-amber-500"
+    },
+    { 
+      title: "Testimoni", 
+      desc: "Kelola pesan kesan dari wali murid yang tampil di Beranda", 
+      icon: "💬", 
+      link: "/admin/dashboard/testimoni",
+      color: "bg-pink-500"
     },
   ];
 
@@ -49,8 +79,8 @@ export default function AdminDashboard() {
           </Link>
         </header>
 
-        {/* Grid Menu Utama (2 Kolom Besar) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        {/* Grid Menu Utama (3 Kolom Besar) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {mainMenus.map((menu, i) => (
             <Link key={i} href={menu.link}>
               <div className="group bg-white p-10 rounded-[3.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.1)] transition-all duration-500 border border-gray-100 active:scale-95 cursor-pointer h-full flex flex-col justify-between relative overflow-hidden">
@@ -81,27 +111,42 @@ export default function AdminDashboard() {
         </div>
 
         {/* Statistik / Footer Panel */}
-        <div className="bg-green-950 rounded-[3.5rem] p-10 md:p-16 text-white relative overflow-hidden">
+        <div className="bg-green-950 rounded-[3.5rem] p-10 md:p-16 text-white relative overflow-hidden shadow-2xl">
           {/* Background Decor */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-500/10 rounded-full blur-[100px]" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-[100px]" />
           
-          <div className="relative z-10 flex flex-col lg:flex-row justify-between items-center gap-10">
-            <div className="text-center lg:text-left">
-              <h2 className="text-3xl font-black uppercase tracking-tight">Status Website <br/><span className="text-yellow-400 italic font-medium lowercase italic">Live Production</span></h2>
-              <div className="mt-4 inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full border border-white/10">
-                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                <p className="text-[10px] font-black uppercase tracking-widest text-emerald-300">Terakhir Update: {new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+          <div className="relative z-10 flex flex-col items-center gap-10">
+            <div className="text-center w-full">
+              <h2 className="text-3xl font-black uppercase tracking-tight mb-2">Statistik Data <span className="text-yellow-400">Sistem</span></h2>
+              <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full border border-white/10">
+                <span className={`w-2 h-2 rounded-full ${loading ? 'bg-amber-400' : 'bg-green-400 animate-pulse'}`} />
+                <p className="text-[10px] font-black uppercase tracking-widest text-emerald-300">
+                  {loading ? 'Sinkronisasi Data...' : `Live Update: ${new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}`}
+                </p>
               </div>
             </div>
 
-            <div className="flex gap-12 md:gap-20 border-t lg:border-t-0 lg:border-l border-white/10 pt-10 lg:pt-0 lg:pl-20 w-full lg:w-auto justify-center">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-12 w-full pt-8 border-t border-white/10">
               <div className="text-center">
-                <p className="text-5xl font-black text-yellow-400 tracking-tighter">Aktif</p>
-                <p className="text-[10px] uppercase font-black tracking-[0.3em] text-emerald-300 mt-2">Database SDM</p>
+                <p className="text-5xl font-black text-yellow-400 tracking-tighter">{loading ? '-' : stats.guru}</p>
+                <p className="text-[10px] uppercase font-black tracking-[0.3em] text-emerald-300 mt-2">Data Guru</p>
               </div>
-              <div className="text-center border-l border-white/10 pl-12 md:pl-20">
-                <p className="text-5xl font-black text-yellow-400 tracking-tighter font-serif italic">Fresh</p>
-                <p className="text-[10px] uppercase font-black tracking-[0.3em] text-emerald-300 mt-2">Konten Galeri</p>
+              <div className="text-center md:border-l border-white/10">
+                <p className="text-5xl font-black text-yellow-400 tracking-tighter">{loading ? '-' : stats.galeri}</p>
+                <p className="text-[10px] uppercase font-black tracking-[0.3em] text-emerald-300 mt-2">Foto Galeri</p>
+              </div>
+              <div className="text-center md:border-l border-white/10">
+                <p className="text-5xl font-black text-yellow-400 tracking-tighter">{loading ? '-' : stats.berita}</p>
+                <p className="text-[10px] uppercase font-black tracking-[0.3em] text-emerald-300 mt-2">Artikel Berita</p>
+              </div>
+              <div className="text-center border-l border-white/10">
+                <p className="text-5xl font-black text-yellow-400 tracking-tighter">{loading ? '-' : stats.faq}</p>
+                <p className="text-[10px] uppercase font-black tracking-[0.3em] text-emerald-300 mt-2">Total FAQ</p>
+              </div>
+              <div className="text-center border-l border-white/10 col-span-2 md:col-span-1">
+                <p className="text-5xl font-black text-yellow-400 tracking-tighter">{loading ? '-' : stats.testimoni}</p>
+                <p className="text-[10px] uppercase font-black tracking-[0.3em] text-emerald-300 mt-2">Testimoni</p>
               </div>
             </div>
           </div>
