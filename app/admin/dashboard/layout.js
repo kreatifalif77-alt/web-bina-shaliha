@@ -9,6 +9,7 @@ export default function AdminLayout({ children }) {
     { name: 'Dashboard', path: '/admin/dashboard', icon: '🏠' },
     { name: 'Data Guru', path: '/admin/dashboard/guru', icon: '👨‍🏫' },
     { name: 'Galeri & Berita', path: '/admin/dashboard/galeri', icon: '📸' },
+    { name: 'Akun Admin', path: '/admin/dashboard/users', icon: '🔑' },
   ];
 
   return (

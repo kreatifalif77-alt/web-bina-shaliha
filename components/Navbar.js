@@ -2,11 +2,32 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [logoClicks, setLogoClicks] = useState(0);
+  const router = useRouter();
+
+  const handleLogoClick = (e) => {
+    if (logoClicks >= 4) {
+      e.preventDefault();
+      router.push('/portal-rahasia');
+      setLogoClicks(0);
+    } else {
+      setLogoClicks(prev => prev + 1);
+    }
+  };
+
+  useEffect(() => {
+    let timeoutId;
+    if (logoClicks > 0) {
+      timeoutId = setTimeout(() => setLogoClicks(0), 2000);
+    }
+    return () => clearTimeout(timeoutId);
+  }, [logoClicks]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,7 +55,7 @@ export default function Navbar() {
         <div className="flex justify-between h-20 items-center">
           
           {/* LOGO */}
-          <Link href="/" className="flex items-center gap-3 group">
+          <Link href="/" className="flex items-center gap-3 group" onClick={handleLogoClick}>
             <div className="relative w-12 h-12 md:w-14 md:h-14 transition-transform group-hover:scale-105">
               <Image 
                 src="/logo-bs.png" 
@@ -65,11 +86,6 @@ export default function Navbar() {
               <Link href="/unit-sd" className="hover:text-yellow-600 px-2 py-2 font-bold transition-all text-sm uppercase">SD</Link>
               
               <Link href="/ppdb" className="bg-yellow-500 hover:bg-green-900 hover:text-white px-5 py-2 rounded-full font-black transition-all shadow-md ml-2 text-sm uppercase">SPMB 2026</Link>
-              
-              {/* TOMBOL LOGIN ADMIN KHUSUS */}
-              <Link href="/admin/login" className="border-2 border-green-900 text-green-900 hover:bg-green-900 hover:text-white px-4 py-2 rounded-xl font-black transition-all text-[10px] uppercase ml-4">
-                Admin
-              </Link>
             </div>
           </div>
 
@@ -94,7 +110,6 @@ export default function Navbar() {
             <Link href="/unit-tk" className="block py-3 border-b font-bold text-green-950 uppercase text-xs" onClick={() => setIsOpen(false)}>Unit TK</Link>
             <Link href="/unit-sd" className="block py-3 border-b font-bold text-green-950 uppercase text-xs" onClick={() => setIsOpen(false)}>Unit SD</Link>
             <Link href="/ppdb" className="block py-4 text-center bg-yellow-500 rounded-xl font-extrabold text-green-950 mt-4 uppercase text-sm" onClick={() => setIsOpen(false)}>SPMB 2026</Link>
-            <Link href="/admin/login" className="block py-3 text-center text-gray-400 font-bold text-[10px] uppercase mt-4" onClick={() => setIsOpen(false)}>Login Admin</Link>
           </div>
         </div>
       )}
